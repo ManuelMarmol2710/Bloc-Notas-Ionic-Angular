@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt'
 export interface I_User extends Document{
 email: string;
 password: string;
-
+comparePassword: (password: string) => Promise<boolean>
 
 }
 
@@ -50,9 +50,9 @@ next();
 });
 
 //boolean in promise 0j0
- userSchema.methods.comparePassword = async function(password:string): Promise<void>{
+ userSchema.methods.comparePassword = async function(password:string): Promise<boolean>{
 
- await bcrypt.compare(password, this.password);
+  return await bcrypt.compare(password, this.password);
 
 
  }
