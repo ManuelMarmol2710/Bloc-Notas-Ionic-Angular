@@ -2,7 +2,7 @@ import {Request,Response} from 'express'
 import User,{I_User} from '../models/user'
 import jwt from 'jsonwebtoken'
 import config from '../config/config'
-
+import blocNotes,{bloc_User} from '../models/notes'
 
 function createToken(user: I_User){
 
@@ -12,6 +12,19 @@ function createToken(user: I_User){
       });
 }
 
+
+export const homeBloc = async (req: Request, res:Response ): Promise<Response>=>{
+
+if(!req.body.notes || !req.body.collections ||!req.body.title ){
+
+return res.status(400).json({msg: 'Por favor colocar titulo, notas y la colections :)'})
+
+}
+
+const newNote = new blocNotes(req.body);
+await newNote.save();
+return res.status(201).json(newNote)
+}
 
 export const signUp = async (req: Request, res:Response ): Promise<Response>=>{
 

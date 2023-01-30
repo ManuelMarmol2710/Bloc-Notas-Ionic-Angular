@@ -1,9 +1,7 @@
 import mongoose, { ConnectOptions} from "mongoose";
 import config from './config/config'
 
-const dbOpciones: ConnectOptions ={
-//??
-}
+
 mongoose.set('strictQuery', true);
 
 mongoose.connect(config.DB.URI)

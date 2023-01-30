@@ -2,14 +2,16 @@ import {model,Schema, Document} from "mongoose";
 
 import bcrypt from 'bcrypt'
 
-export interface I_User extends Document{
-email: string;
-name: string;
-last_Name: string;
-password: string;
-comparePassword: (password: string) => Promise<boolean>
 
-}
+
+export interface I_User extends Document{
+    email: string;
+    name: string;
+    last_Name: string;
+    password: string;
+    comparePassword: (password: string) => Promise<boolean>
+    
+    }
 
 
 const userSchema = new Schema({
@@ -75,3 +77,4 @@ next();
 
 
 export default model<I_User>('User', userSchema);
+
