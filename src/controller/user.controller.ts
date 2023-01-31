@@ -68,7 +68,7 @@ export const getUsers = async (req: Request,res:Response) => {
    };
    
    
-   //error
+
    
    export const deleteUserById = async (req: Request, res: Response) => {
      const { userId } = req.params;

@@ -29,6 +29,21 @@ export const homeBloc = async (req: Request, res:Response ): Promise<Response>=>
         res.status(200).json(note);
       };
       
+      export const getNotesByTitle = async (req: Request, res: Response) => {
+      
+        const note = await notes.findOne({title: req.params.title});
+        res.status(200).json(note);
+      
+      };
+      
+      export const getNotesByCollections = async (req: Request, res: Response) => {
+      
+        const note = await notes.findOne({collections: req.params.collections});
+        res.status(200).json(note);
+      
+      };
+      
+
       export const getNote = async (req: Request, res: Response) => {
         const notess = await notes.find();
         return res.json(notess);
@@ -46,8 +61,7 @@ export const homeBloc = async (req: Request, res:Response ): Promise<Response>=>
       };
       
       
-      //error
-      
+     
       export const deleteNoteById = async (req: Request, res: Response) => {
         const { noteId } = req.params;
       
