@@ -28,7 +28,7 @@ const notesSchema = new Schema({
 
         type: String,
         require:true,
-        unique:true,
+
 
     }
 
