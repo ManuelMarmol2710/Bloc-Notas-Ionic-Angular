@@ -16,7 +16,7 @@ export const signUp = async (req: Request, res:Response ): Promise<Response>=>{
 
 if(!req.body.email || !req.body.password || !req.body.name || !req.body.last_Name ){
 
-return res.status(400).json({msg: 'Por favor enviar tu correo y contraseña :)'})
+return res.status(400).json({msg: 'Llenar todos los campos de datos.'})
 
 }
 
@@ -26,7 +26,7 @@ const user = await User.findOne({email: req.body.email});
 console.log(user)
  if (user){
 
-    return res.status(400).json({msg:'el usuario ya existe'})
+    return res.status(400).json({msg:'El usuario ya existe.'})
 
 
 }
@@ -96,7 +96,7 @@ export const signIn = async (req: Request, res:Response ) => {
 
     if(!req.body.email || !req.body.password ){
 
-        return res.status(400).json({msg: 'Por favor enviar tu correo y contraseña :)'})
+        return res.status(400).json({msg: 'Usuario o contraseña invalidos.'})
         
     }
 
@@ -104,7 +104,7 @@ export const signIn = async (req: Request, res:Response ) => {
 
 if (!user) {
 
-return res.status(400).json({msg: ' El usuario no existe'})
+return res.status(400).json({msg: 'Usuario o contraseña incorrectos.'})
 
 }
 
