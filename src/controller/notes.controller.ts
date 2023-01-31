@@ -5,9 +5,9 @@ import blocNotes from '../models/notes'
 
 export const homeBloc = async (req: Request, res:Response ): Promise<Response>=>{
 
-    if(!req.body.notes || !req.body.collections ||!req.body.title ){
+    if(!req.body.notes ||!req.body.title ){
     
-    return res.status(400).json({msg: 'Por favor colocar titulo, notas y la colections :)'})
+    return res.status(400).json({msg: 'Por favor colocar titulo y contenido a la nota'})
     
     }
     
