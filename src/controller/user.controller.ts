@@ -4,12 +4,12 @@ import jwt from 'jsonwebtoken'
 import config from '../config/config'
 
 
-function createToken(user: I_User){
+ export function createToken(user: I_User){
 
 
-    return jwt.sign({ id: user.id, email: user.email }, config.jwtSecret, {
+   return jwt.sign({ id: user.id, email: user.email }, config.jwtSecret, {
         expiresIn: 86400
-      });
+     });
 }
 
 export const signUp = async (req: Request, res:Response ): Promise<Response>=>{
@@ -51,10 +51,7 @@ export const getUsers = async (req: Request,res:Response) => {
      res.status(200).json(user);
    };
    
-   export const getUser = async (req: Request, res: Response) => {
-     const user = await User.find();
-     return res.json(user);
-   };
+     
    
    export const updateUserById = async (req: Request, res: Response) => {
      const updatedUser = await User.findByIdAndUpdate(
@@ -70,27 +67,13 @@ export const getUsers = async (req: Request,res:Response) => {
    
 
    
-   export const deleteUserById = async (req: Request, res: Response) => {
-     const { userId } = req.params;
-   
-     await User.findByIdAndDelete(userId);
+   export const deleteUserByEmail = async (req: Request, res: Response) => {
+
+       await User.findOneAndDelete({email: req.params.email});
    
      
      res.status(200).json();
    };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export const signIn = async (req: Request, res:Response ) => {
 

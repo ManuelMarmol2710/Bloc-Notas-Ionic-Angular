@@ -6,35 +6,49 @@ import {
   getUsers,
   getUsersById,
   updateUserById,
-  deleteUserById
+  deleteUserByEmail,
 } from '../controller/user.controller'
 import {
   homeBloc,
   getNotes,
-  getNotesById,
   updateNoteById,
   deleteNoteById,
   getNotesByTitle,
   getNotesByCollections
  
 } from '../controller/notes.controller'
+import {
+  putcollections,
+  getcollectBOX,
+  getcollectByName,
+  updatecollectById,
+  deletecollect,
+} from '../controller/collections.controller'
 const router = Router();
 
 router.post('/signup', signUp);
 router.get('/signup',  getUsers)
 router.get('/signup/:userId', getUsersById,)
 router.put('/signup/:userId',updateUserById)
-router.delete('/signup/:userId', deleteUserById)
+router.delete('/signup/:email', deleteUserByEmail)
 
 
 router.post('/signin', signIn);
 
 
-router.post('/homebloc',homeBloc)
-router.get('/homebloc',getNotes)
-router.get('/homeblocC/:collections',getNotesByCollections)
-router.get('/homeblocT/:title',getNotesByTitle)
+router.post('/bloc',homeBloc)
+router.get('/bloc',getNotes)
+router.get('/homeblocC:collections',getNotesByCollections)
+router.get('/homeblocT/:userId/:title',getNotesByTitle)
 router.put('/homebloc/:noteId',updateNoteById)
 router.delete('/homebloc/:noteId',deleteNoteById)
+
+router.post('/collections', putcollections);
+router.get('/collections',   getcollectBOX)
+router.get('/collections/:collections', getcollectByName,)
+router.put('/collections/:collections', updatecollectById,)
+router.delete('/collections/:collections',  deletecollect,)
+
+
 
 export default router;
