@@ -18,6 +18,7 @@ LAST_NAME:process.env.MONGODB_NAME || '',
 
 NOTES: process.env.MONGODB_NOTES || '',
 COLLECTIONS: process.env.MONGODB_URI || '',
+OWNER: process.env.MONGODB_OWNER || '',
 
 },
 

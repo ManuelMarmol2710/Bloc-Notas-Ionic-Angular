@@ -53,27 +53,46 @@ export const getUsers = async (req: Request,res:Response) => {
    
      
    
-   export const updateUserById = async (req: Request, res: Response) => {
-     const updatedUser = await User.findByIdAndUpdate(
-       req.params.userId,
-       req.body,
-       {
-         new: true,
-       }
-     );
-     res.status(200).json(updatedUser);
-   };
-   
-   
+   export const updateUserByEmail = async (req: Request, res: Response) => {
 
+    const user = await User.findOneAndUpdate( req.params, req.body.email, 
+{ 
+
+  new: true,
+
+})
+    ;
+     res.status(200).json(user);
+      
+    
+   };
+  /*/
+  const updatedUser = await User.findByIdAndUpdate(
+     req.params.userId,
+     req.body,
+     {
+       new: true,
+     }
+   );
+   res.status(200).json(updatedUser);
+ };
+   
+*/
    
    export const deleteUserByEmail = async (req: Request, res: Response) => {
+    const user=  await User.findOneAndDelete({email: req.params.email});
+    
+    if (user) {
+  
+   res.status(200).json();
 
-       await User.findOneAndDelete({email: req.params.email});
-   
+      }  else {
      
-     res.status(200).json();
-   };
+     return res.status(400).json({msg: 'Correo incorrecto.'})
+     
+     }
+
+   }
 
 export const signIn = async (req: Request, res:Response ) => {
 
