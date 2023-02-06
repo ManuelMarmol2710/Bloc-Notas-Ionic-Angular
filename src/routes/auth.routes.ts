@@ -10,7 +10,8 @@ import {
 } from '../controller/user.controller'
 import {
   addNotes,
-  getNotes,
+  //getNotes,
+  putNotesWithOwner,
   updateNoteByOne,
     getNotesByTitle,
 
@@ -40,13 +41,17 @@ router.delete('/signup/:email', deleteUserByEmail)
 router.post('/signin', signIn);
 
 
+
 router.post('/note/:owner',addNotes)
-router.get('/note/:owner/:note',getNotes)
-router.get('/note/:owner',getNotes)
-router.post('/note/:owner/:note',getNotes)
+router.post('/note/:owner/:title',putNotesWithOwner)
 router.get('/noteT/:title',getNotesByTitle)
 router.put('/note/:user',updateNoteByOne)
 router.delete('/note/:title',deleteNoteByTitle)
+//router.get('/note/:owner/:note',getNotes)
+//router.get('/note/:owner',getNotes)
+
+
+
 
 router.post('/collections', putcollections);
 router.get('/collections',   getcollectBOX)

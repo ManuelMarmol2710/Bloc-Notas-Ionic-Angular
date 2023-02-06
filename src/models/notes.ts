@@ -1,4 +1,4 @@
-import mongoose, {model,Schema, Document} from "mongoose";
+import {model,Schema, Document} from "mongoose";
 
 
 export interface bloc_User extends Document{
@@ -25,7 +25,7 @@ const notesSchema = new Schema({
     },
 
       owner:{
-        type:mongoose.Types.ObjectId,
+        type:String,
         require:true,
 
 
