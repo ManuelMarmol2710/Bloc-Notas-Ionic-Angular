@@ -9,13 +9,12 @@ import {
   deleteUserByEmail,
 } from '../controller/user.controller'
 import {
-  addNotes,
-  //getNotes,
-  putNotesWithOwner,
-  updateNoteByOne,
-    getNotesByTitle,
 
-  deleteNoteByTitle
+  addNotesWithOwner,
+  updateNoteByOne,
+  getNotesByTitle,
+  deleteNoteByTitle,
+
  
 } from '../controller/notes.controller'
 import {
@@ -42,13 +41,11 @@ router.post('/signin', signIn);
 
 
 
-router.post('/note/:owner',addNotes)
-router.post('/note/:owner/:title',putNotesWithOwner)
-router.get('/noteT/:title',getNotesByTitle)
+router.post('/note/:owner',addNotesWithOwner)
+router.get('/note/:owner',getNotesByTitle)
 router.put('/note/:user',updateNoteByOne)
 router.delete('/note/:title',deleteNoteByTitle)
-//router.get('/note/:owner/:note',getNotes)
-//router.get('/note/:owner',getNotes)
+
 
 
 

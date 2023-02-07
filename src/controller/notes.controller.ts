@@ -2,48 +2,43 @@ import {Request,Response} from 'express'
 import notes from '../models/notes'
 import blocNotes from '../models/notes'
 
-export const addNotes = async (req: Request, res:Response )=>{
+  
+    export const addNotesWithOwner = async (req: Request,res:Response): Promise<Response> => {
 
-const {title,notes}= req.body;
+      const {title,notes}= req.body;
 
-if(!title ){
-    return res.status(400).json({msg: 'Por favor colocar titulo y contenido a la nota'})
+    if(!title ){
+        return res.status(400).json({msg: 'Por favor colocar titulo y contenido a la nota'})
+        
+       }
     
-   }
+      const newNotes = new blocNotes({
+    title,
+    notes,
+    
+      }) 
+    
+    const saveNote = await newNotes.save();
+    saveNote!.owner = req.params.owner
 
-  const newNotes = new blocNotes({
-title,
-notes
-
-  }) 
-  const saveNote = await newNotes.save();
-
- res.status(200).json(saveNote);
-
-  }
-  
-    export const putNotesWithOwner = async (req: Request,res:Response): Promise<Response> => {
-
-   const note = await notes.findOne({title: req.params.title});
-  
-     note!.owner = req.params.owner
-
-    const newNoteWithOwner = new blocNotes(note);
+    const newNoteWithOwner = new blocNotes(saveNote);
     await newNoteWithOwner.save();
-    return res.status(201).json(newNoteWithOwner)
-
+return     res.status(201).json(newNoteWithOwner)
 
     }
    
     
       export const getNotesByTitle = async (req: Request, res: Response) => {
         
-        const note = await notes.findOne({title: req.params.title});
-      
-   if (note) {
-    res.status(200).json(note);
-   
-   }
+   //     const note = await notes.findOne({title: req.params.title});
+  //   console.log(note)  
+  
+  const owner = await notes.find({owner: req.params.owner});
+        if(owner){
+          res.status(200).json(owner);
+        
+        }
+     
        else {
 
         return res.status(400).json({msg: 'Titulo incorrecto.'})
@@ -51,6 +46,10 @@ notes
 
       };
       
+
+
+
+
             export const updateNoteByOne= async (req: Request, res: Response) => {
        const emaill = req.body.email;
        
@@ -63,7 +62,7 @@ notes
       };
       
       
-     
+
       export const deleteNoteByTitle = async (req: Request, res: Response) => {
       const title =  await notes.findOneAndDelete({title: req.params.title});
    
