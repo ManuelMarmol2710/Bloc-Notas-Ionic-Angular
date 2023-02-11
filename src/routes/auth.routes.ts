@@ -14,6 +14,8 @@ import {
   updateNoteByOne,
   getNotesByTitle,
   deleteNoteByTitle,
+  NotesByTitle,
+  NotesByOwner
 
  
 } from '../controller/notes.controller'
@@ -42,11 +44,11 @@ router.post('/signin', signIn);
 
 
 router.post('/note/:owner',addNotesWithOwner)
-router.get('/note/:owner',getNotesByTitle)
+
 router.put('/note/:user',updateNoteByOne)
 router.delete('/note/:title',deleteNoteByTitle)
 
-
+router.get('/note/:owner',NotesByOwner)
 
 
 
