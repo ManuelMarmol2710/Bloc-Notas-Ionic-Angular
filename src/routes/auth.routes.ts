@@ -14,7 +14,11 @@ import {
   updateNoteByOne,
   getNotesByTitle,
   deleteNoteByTitle,
-
+  updateNoteByCollect,
+  getNotesTitle,
+  getNotes,
+  getNotesById,
+  NotesByOwner
  
 } from '../controller/notes.controller'
 import {
@@ -42,17 +46,18 @@ router.post('/signin', signIn);
 
 
 router.post('/note/:owner',addNotesWithOwner)
-router.get('/note/:owner',getNotesByTitle)
-router.put('/note/:user',updateNoteByOne)
+router.post('/note/:title/:collections', updateNoteByCollect)
+router.get('/note/:owner',NotesByOwner)
+
+router.put('/note/:notesId',updateNoteByOne)
 router.delete('/note/:title',deleteNoteByTitle)
 
 
 
 
 
-router.post('/collections', putcollections);
-router.get('/collections',   getcollectBOX)
-router.get('/collections/:collections', getcollectByName,)
+router.post('/collections/:owner', putcollections);
+router.get('/collections/:owner/:collections', getcollectByName,)
 router.put('/collections/:collections', updatecollectById,)
 router.delete('/collections/:collections',  deletecollect,)
 

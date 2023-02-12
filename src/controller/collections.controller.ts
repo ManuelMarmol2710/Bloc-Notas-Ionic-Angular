@@ -1,22 +1,32 @@
 import {Request,Response} from 'express'
-import Collections from '../models/collections';
+import Collect from '../models/collections';
+import collections from '../models/collections';
 
 export const putcollections = async (req: Request, res:Response ): Promise<Response>=>{
-
-    if(!req.body.collections ){
+  const {collections}= req.body;
+  if(!collections ){
     
     return res.status(400).json({msg: 'Por favor una colleccion'})
     
     }
-        const newCollect = new Collections(req.body);
-    await newCollect.save();
-return res.status(201).json(newCollect)
+       
+    const newCollect = new Collect({
+     
+      collections,
+    }) 
+  
+  const saveCollection = await newCollect.save();
+  saveCollection!.owner = req.params.owner
+
+  const newCollects = new Collect(saveCollection);
+  await newCollects.save();
+  return res.status(201).json(newCollects)
 
   }
 
     export const getcollectBOX = async (req: Request,res:Response) => {
       
-      const collects = await Collections.find();
+      const collects = await collections.find();
     res.json(collects)
 
     }
@@ -24,19 +34,22 @@ return res.status(201).json(newCollect)
       
       export const getcollectByName = async (req: Request, res: Response) => {
 
-        const collect = await Collections.findOne({collections: req.params.collections});
+        const collect = await collections.findOne({collections: req.params.collections});
         res.status(200).json(collect);
       
       };
+
+
+      
             export const updatecollectById = async (req: Request, res: Response) => {
-        const updatedCollect = await Collections.findOneAndUpdate({collections: req.params.collections});
+        const updatedCollect = await collections.findOneAndUpdate({collections: req.params.collections});
         res.status(200).json(updatedCollect);
       };
       
       
-     //OJO
+    
       export const deletecollect = async (req: Request, res: Response) => {
-        await Collections.findOneAndDelete({collections: req.params.collections});
+        await collections.findOneAndDelete({collections: req.params.collections});
    
      
         res.status(200).json();

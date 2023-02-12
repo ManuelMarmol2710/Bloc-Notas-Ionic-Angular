@@ -55,7 +55,9 @@ export const getUsers = async (req: Request,res:Response) => {
    
    export const updateUserByEmail = async (req: Request, res: Response) => {
 
-    const user = await User.findOneAndUpdate( req.params, req.body.email, 
+   const {email,password,name,last_Name} = req.params 
+   
+    const user = await User.findOneAndUpdate( 
 { 
 
   new: true,

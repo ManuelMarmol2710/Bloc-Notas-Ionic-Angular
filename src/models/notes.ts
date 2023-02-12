@@ -6,6 +6,7 @@ export interface bloc_User extends Document{
     title:string,
     notes: string,
    owner:string,
+   collections:string;
 }
 
 const notesSchema = new Schema({
@@ -30,7 +31,15 @@ const notesSchema = new Schema({
 
 
     },
+    
+  collections:{
 
+
+    type:String,
+    
+    
+    
+    },
 
 },{
     versionKey:false

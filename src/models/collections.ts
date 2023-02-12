@@ -2,7 +2,7 @@ import {model,Schema, Document} from "mongoose";
 
 export interface Collect extends Document{
     collections: string;
-
+   owner: string;
     
     }
 
@@ -13,18 +13,20 @@ collections:{
 
 
 type:String,
-unique:true,
-required: true,
-lowercase: true,
-trim: true,
 
 
-}
 
+},
+owner:{
+    type:String,
+    require:true,
+
+
+},
 
 });
 
 
 userSchema.pre<Collect>('save', async function(next){
 })
-export default model<Collect>('Collections', userSchema);
+export default model<Collect>('collection', userSchema);
