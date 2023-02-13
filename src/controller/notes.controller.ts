@@ -27,7 +27,7 @@ return     res.status(201).json(saveNote)
 
     }
     export const NotesByOwner = async (req: Request, res: Response) => {
-      const owner = await notes.find({ owner: req.params.owner }).select('title notes');
+      const owner = await notes.find({ owner: req.params.owner }).select('title notes collections');
     
       if (owner) {
         res.status(200).json(owner);
@@ -35,66 +35,7 @@ return     res.status(201).json(saveNote)
         return res.status(400).json({ msg: "Titulo incorrecto." });
       }
     };
-    
-    
-      export const getNotesByTitle = async (req: Request, res: Response) => {
-     const owner = await notes.find({owner: req.params.owner});
-        if(owner){
-          res.status(200).json(owner);
-        
-        }
-     
-       else {
-
-        return res.status(400).json({msg: 'Titulo incorrecto.'})
-       }
-
-      };
-
-      export const getNotesTitle = async (req: Request, res: Response) => {
-        
-             const title = req.params.title
-             const notes = req.params.notes
-   
-             
-      if(title){
-               res.status(200).json(title);
-             
-             }
-          
-            else {
-     
-             return res.status(400).json({msg: 'Titulo incorrecto.'})
-            }
-     
-           };
-           export const getNotes = async (req: Request, res: Response) => {
-        
-            
-            const note = req.params.notes
-     
-            if(note){
-              res.status(200).json(note);
-            
-            }
-         
-           else {
-    
-            return res.status(400).json({msg: 'Titulo incorrecto.'})
-           }
-    
-          };
-      
-
-
-          export const getNotesById = async (req: Request, res: Response) => {
-            const { notesId } = req.params;
-          
-            const user = await notes.findById(notesId);
-            res.status(200).json(user);
-          };
-
-      export const updateNoteByCollect= async (req: Request, res: Response) => {
+    export const updateNoteByCollect= async (req: Request, res: Response) => {
         const note = await notes.findOne({title: req.params.title});
   
         note!.collections = req.params.collections

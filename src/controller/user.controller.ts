@@ -55,14 +55,14 @@ export const getUsers = async (req: Request,res:Response) => {
    
    export const updateUserByEmail = async (req: Request, res: Response) => {
 
-   const {email,password,name,last_Name} = req.params 
    
-    const user = await User.findOneAndUpdate( 
-{ 
-
-  new: true,
-
-})
+    const {email,password,name,last_Name} = req.body
+    const {emaili} = req.params
+    const user = await User.findOneAndUpdate( {emaili},req.body
+ 
+      ,{new: true,
+      
+      })
     ;
      res.status(200).json(user);
       

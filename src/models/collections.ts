@@ -29,4 +29,4 @@ owner:{
 
 userSchema.pre<Collect>('save', async function(next){
 })
-export default model<Collect>('collection', userSchema);
+export default model<Collect>('BDcollection', userSchema);

@@ -1,7 +1,7 @@
 import {Request,Response} from 'express'
 import Collect from '../models/collections';
 import collections from '../models/collections';
-
+import notes from '../models/notes'
 export const putcollections = async (req: Request, res:Response ): Promise<Response>=>{
   const {collections}= req.body;
   if(!collections ){
@@ -24,19 +24,20 @@ export const putcollections = async (req: Request, res:Response ): Promise<Respo
 
   }
 
-    export const getcollectBOX = async (req: Request,res:Response) => {
-      
-      const collects = await collections.find();
-    res.json(collects)
-
-    }
    
       
       export const getcollectByName = async (req: Request, res: Response) => {
 
-        const collect = await collections.findOne({collections: req.params.collections});
+ const collect = await notes.find({collections: req.params.collections}).select('title notes collections');
+        
+        if(!collect) {
+        res.status(400).json('Coleccion no encontrada.')
+        }
+        
+        if(collect){
         res.status(200).json(collect);
       
+        }
       };
 
 

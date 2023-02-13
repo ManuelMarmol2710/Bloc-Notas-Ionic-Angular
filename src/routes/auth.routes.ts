@@ -12,18 +12,13 @@ import {
 
   addNotesWithOwner,
   updateNoteByOne,
-  getNotesByTitle,
-  deleteNoteByTitle,
+   deleteNoteByTitle,
   updateNoteByCollect,
-  getNotesTitle,
-  getNotes,
-  getNotesById,
-  NotesByOwner
+   NotesByOwner
  
 } from '../controller/notes.controller'
 import {
   putcollections,
-  getcollectBOX,
   getcollectByName,
   updatecollectById,
   deletecollect,
@@ -37,7 +32,7 @@ const router = Router();
 router.post('/signup', signUp);
 router.get('/signup',  getUsers)
 router.get('/signup/:userId', getUsersById,)
-router.put('/signup/:email',updateUserByEmail)
+router.put('/signup/:emaili',updateUserByEmail)
 router.delete('/signup/:email', deleteUserByEmail)
 
 
@@ -48,7 +43,6 @@ router.post('/signin', signIn);
 router.post('/note/:owner',addNotesWithOwner)
 router.post('/note/:title/:collections', updateNoteByCollect)
 router.get('/note/:owner',NotesByOwner)
-
 router.put('/note/:notesId',updateNoteByOne)
 router.delete('/note/:title',deleteNoteByTitle)
 
