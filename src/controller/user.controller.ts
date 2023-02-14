@@ -1,129 +1,100 @@
-import {NextFunction, Request,Response} from 'express'
-import User,{I_User} from '../models/user'
-import jwt from 'jsonwebtoken'
-import config from '../config/config'
-import bcrypt from 'bcrypt'
+import { NextFunction, Request, Response } from "express";
+import User, { I_User } from "../models/user";
+import jwt from "jsonwebtoken";
+import config from "../config/config";
+import bcrypt from "bcrypt";
 
- export function createToken(user: I_User){
-
-
-   return jwt.sign({ id: user.id, email: user.email }, config.jwtSecret, {
-        expiresIn: 86400
-     });
+export function createToken(user: I_User) {
+  return jwt.sign({ id: user.id, email: user.email }, config.jwtSecret, {
+    expiresIn: 86400,
+  });
 }
 
-export const signUp = async (req: Request, res:Response ): Promise<Response>=>{
+export const signUp = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  if (
+    !req.body.email ||
+    !req.body.password ||
+    !req.body.name ||
+    !req.body.last_Name
+  ) {
+    return res.status(400).json({ msg: "Llenar todos los campos de datos." });
+  }
 
-if(!req.body.email || !req.body.password || !req.body.name || !req.body.last_Name ){
+  const user = await User.findOne({ email: req.body.email });
 
-return res.status(400).json({msg: 'Llenar todos los campos de datos.'})
+  console.log(user);
+  if (user) {
+    return res.status(400).json({ msg: "El usuario ya existe." });
+  }
 
-}
+  const newUser = new User(req.body);
+  await newUser.save();
+  return res.status(201).json(newUser);
+};
 
-const user = await User.findOne({email: req.body.email});
+export const getUsers = async (req: Request, res: Response) => {
+  const Users = await User.find();
+  res.json(Users);
+};
 
+export const getUsersById = async (req: Request, res: Response) => {
+  const { userId } = req.params;
 
-console.log(user)
- if (user){
+  const user = await User.findById(userId);
+  res.status(200).json(user);
+};
 
-    return res.status(400).json({msg:'El usuario ya existe.'})
+export const updateUserByEmail = async (req: Request, res: Response) => {
+  const salt = await bcrypt.genSalt(10);
+  const contrasenaCifrada = await bcrypt.hash(req.body.password, salt);
+  if (req.body.password == null || salt == null) {
+    console.log("error");
+  }
 
+  const user = await User.findOneAndUpdate(
+    { email: req.params.email },
+    {
+      email: req.params.email,
+      password: contrasenaCifrada,
+      name: req.body.name,
+      last_Name: req.body.last_Name,
+    },
+    { upsert: true, new: true }
+  );
 
-}
+  res.status(200).json(user);
+};
+export const deleteUserByEmail = async (req: Request, res: Response) => {
+  const user = await User.findOneAndDelete({ email: req.params.email });
 
-const newUser = new User(req.body);
-await newUser.save();
-return res.status(201).json(newUser)
-}
+  if (user) {
+    res.status(200).json();
+  } else {
+    return res.status(400).json({ msg: "Correo incorrecto." });
+  }
+};
 
+export const signIn = async (req: Request, res: Response) => {
+  if (!req.body.email || !req.body.password) {
+    return res.status(400).json({ msg: "Usuario o contraseña invalidos." });
+  }
 
+  const user = await User.findOne({ email: req.body.email });
 
-export const getUsers = async (req: Request,res:Response) => {
-    const Users = await User.find();
- res.json(Users)
+  if (!user) {
+    return res.status(400).json({ msg: "Usuario o contraseña incorrectos." });
+  }
 
- }
+  const isMatch = await user.comparePassword(req.body.password);
 
- export const getUsersById = async (req: Request, res: Response) => {
-     const { userId } = req.params;
-   
-     const user = await User.findById(userId);
-     res.status(200).json(user);
-   };
-   
-     
-   
-   export const updateUserByEmail = async (req: Request, res: Response) => {
-     
-      const salt = await bcrypt.genSalt(10);
-      const contrasenaCifrada =  await bcrypt.hash(req.body.password, salt)
-      if (req.body.password == null || salt == null) {
-   
-         console.log('error')
-          }
-         
-      const user =  await User.findOneAndUpdate({email: req.params.email},
-  {email:req.params.email,
-   password:contrasenaCifrada,
-   name:req.body.name,
-   last_Name:req.body.last_Name}
-,{upsert:true, new: true,})
-  
-res.status(200).json(user);
+  if (isMatch) {
+    return res.status(200).json({ token: createToken(user) });
+  }
 
-  
-
-
-  }   
-   export const deleteUserByEmail = async (req: Request, res: Response) => {
-    const user=  await User.findOneAndDelete({email: req.params.email});
-    
-    if (user) {
-  
-   res.status(200).json();
-
-      }  else {
-     
-     return res.status(400).json({msg: 'Correo incorrecto.'})
-     
-     }
-
-   }
-
-export const signIn = async (req: Request, res:Response ) => {
-
-    if(!req.body.email || !req.body.password ){
-
-        return res.status(400).json({msg: 'Usuario o contraseña invalidos.'})
-        
-    }
-
-   const user = await User.findOne({email: req.body.email})
-
-if (!user) {
-
-return res.status(400).json({msg: 'Usuario o contraseña incorrectos.'})
-
-}
-
-
-const  isMatch = await user.comparePassword(req.body.password);
-
-if (isMatch){
-
-
-return res.status(200).json({token: createToken(user)});
-
-
-
-}
-
-return res.status(400).json ({
-
-msg: 'email y contraseña incorrectos'
-
-});
-
-}
-
-
+  return res.status(400).json({
+    msg: "email y contraseña incorrectos",
+  });
+};

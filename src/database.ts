@@ -1,23 +1,18 @@
 import mongoose from "mongoose";
-import config from './config/config'
+import config from "./config/config";
 
+mongoose.set("strictQuery", true);
 
-mongoose.set('strictQuery', true);
-
-
-mongoose.connect(config.DB.URI)
+mongoose.connect(config.DB.URI);
 
 const connection = mongoose.connection;
 
-connection.once('open', () => {
-
-console.log('El MondongoDB se ha conectado')
-
+connection.once("open", () => {
+  console.log("El MondongoDB se ha conectado");
 });
 
-connection.on('error', err =>{
-console.log(err);
+connection.on("error", (err) => {
+  console.log(err);
 
-process.exit(0)
-
-})
+  process.exit(0);
+});
