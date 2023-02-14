@@ -1,25 +1,21 @@
 export default {
+  jwtSecret: process.env.JWT_SECRET || "somesecrettoken",
 
+  DB: {
+    URI:
+      process.env.MONGODB_URI ||
+      "mongodb+srv://movilesproyecto:12345@cluster0.htp15ow.mongodb.net/test",
 
+    USER: process.env.MONGODB_USER || "",
 
-   jwtSecret: process.env.JWT_SECRET || 'somesecrettoken',
+    PASSWORD: process.env.MONGODB_PASSWORD || "",
 
-DB :{
-   
-URI: process.env.MONGODB_URI ||'mongodb://0.0.0.0:27017/BlockLYR',
+    NAME: process.env.MONGODB_NAME || "",
 
-USER: process.env.MONGODB_USER ||'',
+    LAST_NAME: process.env.MONGODB_NAME || "",
 
-PASSWORD:process.env.MONGODB_PASSWORD || '',
-
-NAME:process.env.MONGODB_NAME || '',
-
-LAST_NAME:process.env.MONGODB_NAME || '',
-
-NOTES: process.env.MONGODB_NOTES || '',
-COLLECTIONS: process.env.MONGODB_COLLECTIONS || '',
-OWNER: process.env.MONGODB_OWNER || '',
-
-},
-
-}
+    NOTES: process.env.MONGODB_NOTES || "",
+    COLLECTIONS: process.env.MONGODB_COLLECTIONS || "",
+    OWNER: process.env.MONGODB_OWNER || "",
+  },
+};
