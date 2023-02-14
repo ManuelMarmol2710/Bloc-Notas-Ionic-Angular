@@ -32,7 +32,7 @@ const router = Router();
 router.post('/signup', signUp);
 router.get('/signup',  getUsers)
 router.get('/signup/:userId', getUsersById,)
-router.put('/signup/:emaili',updateUserByEmail)
+router.put('/signup/:email',updateUserByEmail)
 router.delete('/signup/:email', deleteUserByEmail)
 
 

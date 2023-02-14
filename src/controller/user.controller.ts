@@ -1,8 +1,8 @@
-import {Request,Response} from 'express'
+import {NextFunction, Request,Response} from 'express'
 import User,{I_User} from '../models/user'
 import jwt from 'jsonwebtoken'
 import config from '../config/config'
-
+import bcrypt from 'bcrypt'
 
  export function createToken(user: I_User){
 
@@ -54,33 +54,27 @@ export const getUsers = async (req: Request,res:Response) => {
      
    
    export const updateUserByEmail = async (req: Request, res: Response) => {
+     
+      const salt = await bcrypt.genSalt(10);
+      const contrasenaCifrada =  await bcrypt.hash(req.body.password, salt)
+      if (req.body.password == null || salt == null) {
+   
+         console.log('error')
+          }
+         
+      const user =  await User.findOneAndUpdate({email: req.params.email},
+  {email:req.params.email,
+   password:contrasenaCifrada,
+   name:req.body.name,
+   last_Name:req.body.last_Name}
+,{upsert:true, new: true,})
+  
+res.status(200).json(user);
 
-   
-    const {email,password,name,last_Name} = req.body
-    const {emaili} = req.params
-    const user = await User.findOneAndUpdate( {emaili},req.body
- 
-      ,{new: true,
-      
-      })
-    ;
-     res.status(200).json(user);
-      
-    
-   };
-  /*/
-  const updatedUser = await User.findByIdAndUpdate(
-     req.params.userId,
-     req.body,
-     {
-       new: true,
-     }
-   );
-   res.status(200).json(updatedUser);
- };
-   
-*/
-   
+  
+
+
+  }   
    export const deleteUserByEmail = async (req: Request, res: Response) => {
     const user=  await User.findOneAndDelete({email: req.params.email});
     
@@ -131,3 +125,5 @@ msg: 'email y contraseña incorrectos'
 });
 
 }
+
+
