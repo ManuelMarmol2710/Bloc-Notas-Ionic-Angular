@@ -27,31 +27,40 @@ export const putcollections = async (req: Request, res:Response ): Promise<Respo
    
       
       export const getcollectByName = async (req: Request, res: Response) => {
+        const {collections}= req.params;
+        if(!collections ){
+          
+          return res.status(400).json({msg: 'Por favor rellenar el campo buscar.'})
+          
+          }
 
  const collect = await notes.find({collections: req.params.collections}).select('title notes collections');
         
-        if(!collect) {
-        res.status(400).json('Coleccion no encontrada.')
-        }
-        
-        if(collect){
-        res.status(200).json(collect);
+       if(collect){
+        res.status(200).json(collect)
       
+        } else{
+          res.status(400).json(collect)
         }
+    
       };
 
-
-      
-            export const updatecollectById = async (req: Request, res: Response) => {
-        const updatedCollect = await collections.findOneAndUpdate({collections: req.params.collections});
-        res.status(200).json(updatedCollect);
-      };
+    
+   
       
       
     
       export const deletecollect = async (req: Request, res: Response) => {
-        await collections.findOneAndDelete({collections: req.params.collections});
-   
+       const collect  = await notes.findOneAndDelete({collections: req.params.collections});
+       
+       if(!collect) {
+          res.status(400).json('Coleccion no encontrada.')
+          }
+          
+          if(collect){
+          res.status(200).json(collect);
+        
+          }
      
         res.status(200).json();
       

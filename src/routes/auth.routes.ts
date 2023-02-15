@@ -6,6 +6,7 @@ import {
   getUsersById,
   updateUserByEmail,
   deleteUserByEmail,
+  updatePassword,
 } from "../controller/user.controller";
 import {
   addNotesWithOwner,
@@ -13,11 +14,11 @@ import {
   deleteNoteByTitle,
   updateNoteByCollect,
   NotesByOwner,
+
 } from "../controller/notes.controller";
 import {
   putcollections,
   getcollectByName,
-  updatecollectById,
   deletecollect,
 } from "../controller/collections.controller";
 
@@ -27,6 +28,7 @@ router.post("/signup", signUp);
 router.get("/signup", getUsers);
 router.get("/signup/:userId", getUsersById);
 router.put("/signup/:email", updateUserByEmail);
+router.put("/signup/password/:email", updatePassword);
 router.delete("/signup/:email", deleteUserByEmail);
 
 router.post("/signin", signIn);
@@ -39,7 +41,6 @@ router.delete("/note/:title", deleteNoteByTitle);
 
 router.post("/collections/:owner", putcollections);
 router.get("/collections/:owner/:collections", getcollectByName);
-router.put("/collections/:collections", updatecollectById);
-router.delete("/collections/:collections", deletecollect);
+router.delete("/collections/:owner/:collections", deletecollect);
 
 export default router;

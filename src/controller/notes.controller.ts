@@ -46,8 +46,7 @@ return     res.status(201).json(saveNote)
       
       
       }
-      
-
+   
 
 
             export const updateNoteByOne= async (req: Request, res: Response) => {
@@ -64,21 +63,7 @@ return     res.status(201).json(saveNote)
                 
               
              };
-             export const updateNoteByOne1= async (req: Request, res: Response) => {
-              const {notesId} = req.params 
-   
-              const Notes = await notes.findOneAndUpdate( req.body,
-          { 
           
-            new: true,
-          
-          })
-              ;
-               res.status(200).json(Notes);
-                
-              
-             };
-      
       
 
       export const deleteNoteByTitle = async (req: Request, res: Response) => {

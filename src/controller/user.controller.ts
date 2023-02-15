@@ -48,17 +48,18 @@ export const getUsersById = async (req: Request, res: Response) => {
 };
 
 export const updateUserByEmail = async (req: Request, res: Response) => {
-  const salt = await bcrypt.genSalt(10);
-  const contrasenaCifrada = await bcrypt.hash(req.body.password, salt);
-  if (req.body.password == null || salt == null) {
-    console.log("error");
+  if (
+    !req.body.name 
+ 
+  ) {
+    return res.status(400).json({ msg: "Llenar algun campo de datos." });
   }
 
+  
   const user = await User.findOneAndUpdate(
     { email: req.params.email },
-    {
+    { 
       email: req.params.email,
-      password: contrasenaCifrada,
       name: req.body.name,
       last_Name: req.body.last_Name,
     },
@@ -67,6 +68,22 @@ export const updateUserByEmail = async (req: Request, res: Response) => {
 
   res.status(200).json(user);
 };
+
+
+export const updatePassword = async (req: Request, res: Response) => {
+  const salt = await bcrypt.genSalt(10);
+  const contrasenaCifrada = await bcrypt.hash(req.body.password, salt);
+  const updatePassword = await User.findOneAndUpdate(
+    { email: req.params.email },
+    {
+    password: contrasenaCifrada,
+    },
+    { upsert: true, new: true }
+  );
+
+  res.status(200).json(updatePassword);
+};
+
 export const deleteUserByEmail = async (req: Request, res: Response) => {
   const user = await User.findOneAndDelete({ email: req.params.email });
 
