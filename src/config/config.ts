@@ -5,7 +5,7 @@ export default {
     URI:
       process.env.MONGODB_URI ||
       "mongodb+srv://movilesproyecto:12345@cluster0.htp15ow.mongodb.net/test",
-   PORT: process.env.PORT || 3000,
+ 
     USER: process.env.MONGODB_USER || "",
 
     PASSWORD: process.env.MONGODB_PASSWORD || "",
