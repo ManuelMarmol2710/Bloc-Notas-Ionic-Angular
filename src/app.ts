@@ -29,7 +29,6 @@ passport.use(passportMid);
 
 app.get('/',(_req,res)=>{ 
 
-    res.send(   `  La api esta en http://localhost:${app.get('port')} `)
 });
 
 app.use(authRoutes);
