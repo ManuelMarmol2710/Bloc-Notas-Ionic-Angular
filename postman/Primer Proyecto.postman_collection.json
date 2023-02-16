@@ -1,0 +1,414 @@
+{
+	"info": {
+		"_postman_id": "c99c2d28-f5d0-43fd-a883-b605ae2f1bc0",
+		"name": "Primer Proyecto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25517635"
+	},
+	"item": [
+		{
+			"name": "Enviar NotawithOwner",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ3ODQzOTllYTdhMTE1ODNjMTdkZSIsImlhdCI6MTY3NTQ1ODYyNywiZXhwIjoxNjc1NTQ1MDI3fQ.cyTZfzkOaffX6ka9Vhy4glu439FJ_afnUB-3zthV44Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ4MzAyMDRjYzk5YjJhZDU1N2I2ZiIsImlhdCI6MTY3NTQ2MTM3OCwiZXhwIjoxNjc1NTQ3Nzc4fQ.eJ-0uyXYQvsiGhfzyBawKqrspp9-ekmmVdIprqkGdRQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\":\"PRUEBA3623\",\r\n\"notes\":\"manuelNOTadmin\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/note/PRUEBA3623",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"note",
+						"PRUEBA3623"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enviar Colecciones",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ3ODQzOTllYTdhMTE1ODNjMTdkZSIsImlhdCI6MTY3NTQ1ODYyNywiZXhwIjoxNjc1NTQ1MDI3fQ.cyTZfzkOaffX6ka9Vhy4glu439FJ_afnUB-3zthV44Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ4MzAyMDRjYzk5YjJhZDU1N2I2ZiIsImlhdCI6MTY3NTQ2MTM3OCwiZXhwIjoxNjc1NTQ3Nzc4fQ.eJ-0uyXYQvsiGhfzyBawKqrspp9-ekmmVdIprqkGdRQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/collections/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"collections",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar Collection a la Nota",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ3ODQzOTllYTdhMTE1ODNjMTdkZSIsImlhdCI6MTY3NTQ1ODYyNywiZXhwIjoxNjc1NTQ1MDI3fQ.cyTZfzkOaffX6ka9Vhy4glu439FJ_afnUB-3zthV44Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ4MzAyMDRjYzk5YjJhZDU1N2I2ZiIsImlhdCI6MTY3NTQ2MTM3OCwiZXhwIjoxNjc1NTQ3Nzc4fQ.eJ-0uyXYQvsiGhfzyBawKqrspp9-ekmmVdIprqkGdRQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\":\"PRUEBA3\",\r\n\"notes\":\"manuelNOTadmin\"\r\n\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/note/nuevanota/cocina",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"note",
+						"nuevanota",
+						"cocina"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Collections",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ3ODQzOTllYTdhMTE1ODNjMTdkZSIsImlhdCI6MTY3NTQ1ODYyNywiZXhwIjoxNjc1NTQ1MDI3fQ.cyTZfzkOaffX6ka9Vhy4glu439FJ_afnUB-3zthV44Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ4MzAyMDRjYzk5YjJhZDU1N2I2ZiIsImlhdCI6MTY3NTQ2MTM3OCwiZXhwIjoxNjc1NTQ3Nzc4fQ.eJ-0uyXYQvsiGhfzyBawKqrspp9-ekmmVdIprqkGdRQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\":\"PRUEBA3\",\r\n\"notes\":\"manuelNOTadmin\"\r\n\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/collections/manuelmarmolonicos@gmail.com/Universidad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"collections",
+						"manuelmarmolonicos@gmail.com",
+						"Universidad"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerNota",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ3ODQzOTllYTdhMTE1ODNjMTdkZSIsImlhdCI6MTY3NTQ1ODYyNywiZXhwIjoxNjc1NTQ1MDI3fQ.cyTZfzkOaffX6ka9Vhy4glu439FJ_afnUB-3zthV44Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ4MzAyMDRjYzk5YjJhZDU1N2I2ZiIsImlhdCI6MTY3NTQ2MTM3OCwiZXhwIjoxNjc1NTQ3Nzc4fQ.eJ-0uyXYQvsiGhfzyBawKqrspp9-ekmmVdIprqkGdRQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\":\"PRUEBA34455\"\r\n\r\n\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/note/manuelmarmol",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"note",
+						"manuelmarmol"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerNota especifica",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ3ODQzOTllYTdhMTE1ODNjMTdkZSIsImlhdCI6MTY3NTQ1ODYyNywiZXhwIjoxNjc1NTQ1MDI3fQ.cyTZfzkOaffX6ka9Vhy4glu439FJ_afnUB-3zthV44Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ4MzAyMDRjYzk5YjJhZDU1N2I2ZiIsImlhdCI6MTY3NTQ2MTM3OCwiZXhwIjoxNjc1NTQ3Nzc4fQ.eJ-0uyXYQvsiGhfzyBawKqrspp9-ekmmVdIprqkGdRQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"title\":\"SI\"\r\n\r\n\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/note/titulo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"note",
+						"titulo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Iniciar sesion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\"email\":\"admin\",\r\n\"password\":\"admin\"\r\n\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrarse",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\"email\":\"admin2wddsadadasd\",\r\n\"password\":\"admin\",\r\n\"name\":\"manuel\",\r\n\"last_Name\":\"marmol\"\r\n\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ActualizarPerfil",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\"email\":\"manuemarmol25\",\r\n\"password\":\"admin\",\r\n\"name\":\"manuel\",\r\n\"last_Name\":\"marmol\"\r\n\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/signup/manuelmarmol27",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"signup",
+						"manuelmarmol27"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ActualizarNota",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\"title\":\"nuevanotaCambio\",\r\n\"notes\":\"admin\",\r\n\"collections\":\"manuel\"\r\n\r\n\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/note",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"note"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
