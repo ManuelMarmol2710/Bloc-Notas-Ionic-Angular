@@ -30,8 +30,7 @@ export const getcollectByName = async (req: Request, res: Response) => {
   }
 
   const collect = await notes.find({collections: req.params.collections}).select('title notes collections');
-    .select("title notes collections");
-
+   
   res.status(200).json(collect);
 };
 
