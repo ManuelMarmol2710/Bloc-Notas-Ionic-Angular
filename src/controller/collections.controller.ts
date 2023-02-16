@@ -30,7 +30,7 @@ export const getcollectByName = async (req: Request, res: Response) => {
   }
 
   const owner = await notes
-    .findOne{ collections: req.params.collections })
+    .findOne({ collections: req.params.collections })
     .select("title notes collections");
 
   res.status(200).json(owner);
