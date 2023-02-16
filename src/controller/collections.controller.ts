@@ -24,14 +24,18 @@ export const putcollections = async (
 };
  
 export const getcollectByName = async (req: Request, res: Response) => {
-  const { collections } = req.params;
+  const { collections } = req.body;
   if (!collections) {
     return res.status(400).json({ msg: "Por favor rellenar el campo buscar." });
   }
-
-  const collect = await notes.find({collections: req.params.collections}).select('title notes collections');
-   
-  res.status(200).json(collect);
+ const collection = await notes
+    .find({collections: req.params.collections, owner:req.params.owner })
+    .select("title notes collections");
+ if (collection) {
+  res.status(200).json(collection);
+} else {
+  return res.status(400).json({ msg: "Coleccion  incorrecta." });
+}
 };
 
 export const deletecollect = async (req: Request, res: Response) => {
