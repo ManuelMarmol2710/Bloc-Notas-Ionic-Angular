@@ -1,17 +1,14 @@
 import { Router } from "express";
-import passport from 'passport'
+import passport from "passport";
 
-const router = Router ();
+const router = Router();
 
- router.get('/special',passport.authenticate('jwt',{session: false}),(req,res)=>{
+router.get(
+  "/special",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.send("sucess");
+  }
+);
 
-res.send('sucess')
-
-
-})
-
-
-
-
-
-export default router
+export default router;
