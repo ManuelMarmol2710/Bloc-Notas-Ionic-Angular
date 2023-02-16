@@ -4,7 +4,7 @@ export default {
   DB: {
     URI:
       process.env.MONGODB_URI ||
-      "mongodb+srv://movilesproyecto:12345@cluster0.htp15ow.mongodb.net/test",
+      "mongodb://mongo:hSUP3me0Jj0K26kJww9Z@containers-us-west-167.railway.app:7533",
  
     USER: process.env.MONGODB_USER || "",
 
