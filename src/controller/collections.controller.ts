@@ -24,7 +24,7 @@ export const putcollections = async (
 };
  
 export const getcollectByName = async (req: Request, res: Response) => {
-  const { collections } = req.body;
+  const { collections } = req.params;
   if (!collections) {
     return res.status(400).json({ msg: "Por favor rellenar el campo buscar." });
   }
