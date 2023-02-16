@@ -29,11 +29,10 @@ export const getcollectByName = async (req: Request, res: Response) => {
     return res.status(400).json({ msg: "Por favor rellenar el campo buscar." });
   }
 
-  const owner = await notes
-    .findOne({collections: req.params.collections })
+  const collect = await notes.find({collections: req.params.collections}).select('title notes collections');
     .select("title notes collections");
 
-  res.status(200).json(owner);
+  res.status(200).json(collect);
 };
 
 export const deletecollect = async (req: Request, res: Response) => {
